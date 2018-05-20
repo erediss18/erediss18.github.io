@@ -39,7 +39,8 @@ $("#landing_demographics").click(function () {
 
     // fallback: if data array has not been created yet
     if ($.isEmptyObject(data) || typeof data === 'undefined') {
-        var data = Experiment.init();
+        data = Experiment.init();
+        console.log(data)
     }
 
     document.getElementById('landing').remove();
@@ -64,7 +65,7 @@ $("#demographics_task-1-instructions").click(function () {
     data.demographics.orientation = g.getRadio("orientation");
     data.demographics.class = g.getRadio("class");
     data.demographics.birth = $("#birth").val() ? $("#birth").val() : "no response";
-    data.demographics.browserInfo = g.BrowserInfo
+    data.demographics.browserInfo = g.BrowserInfo.join(",")
 
 
     document.getElementById('demographics').remove();
