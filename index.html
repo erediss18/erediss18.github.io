@@ -1,0 +1,144 @@
+<!--
+author: Nicholaus P. Brosowsky <nbrosowsky@gmail.com>
+link: nbrosowsky.github.io
+-->
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="N.P. Brosowsky" content="Emotions Task" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Stylesheets
+	============================================= -->
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+
+
+
+    <!-- Document Title
+	============================================= -->
+    <title>Emotions Task</title>
+
+</head>
+
+<body>
+
+    <!-- page load spinner -->
+    <div id="load-div" class="standard-display absolute-center">
+        <div class="load loader"></div>
+    </div>
+
+    <!-- Load screen -->
+    <!-- If images have not loaded by task 2, the loading screen is displayed -->
+    <div id="images-loading" class="standard-display absolute-center" style="display: none">
+        <div style="width:80%" class="flexColumn">
+            <p>Please wait while some images finish loading...</p>
+            <p id="progress"></p>
+        </div>
+    </div>
+
+    <!-- Main Content
+		============================================= -->
+    <div id="main-display" class="content-display absolute-center">
+
+
+        <div id="landing" class="standard-display absolute-center" style="display: none">
+            <div style="width:80%;">
+                <p>Thank you for agreeing to participate in this research.
+                </p>
+                <p>If you have any questions, troubles, or concerns while completing the study, please ask one of the researchers. Researchers will be walking around periodically to provide help as needed.
+                </p>
+                <p>When you’re ready to get started, press “Next” to begin.
+                </p>
+                <br>
+                <div style="text-align: right">
+                    <button id="landing_demographics" style="text-align: center" class="button-green">NEXT</button>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- Demographics display -->
+        <div id="demographics" class="standard-display absolute-center" style="display:none">
+            <div style="width:80%;">
+                <p><span class="question-header">Age:</span>
+                    <input name="age" id="age" type="text"> </p>
+
+                <p class="question-header">Race:</p>
+                <input type="radio" name="race" value="Non-Hispanic White" id="Non-Hispanic White"> Non-Hispanic White <br>
+                <input type="radio" name="race" value="Hispanic"> Hispanic <br>
+                <input type="radio" name="race" value="Black"> Black <br>
+                <input type="radio" name="race" value="Asian"> Asian <br>
+                <input type="radio" name="race" value="Pacific Islander"> Pacific Islander <br>
+                <input type="radio" name="race" value="Native American"> Native American <br>
+                <input type="radio" name="race" value="Mixed Race"> Mixed Race <br>
+
+                <p class="question-header">Ethnicity (e.g., Puerto Rican, Chinese, etc.):
+                    <input name="ethnicity" id="ethnicity" type="text"> </p>
+
+                <p class="question-header">Gender:</p>
+                <input type="radio" name="gender" value="Male"> Male <br>
+                <input type="radio" name="gender" value="Female"> Female <br>
+                <input type="radio" name="gender" value="Trans-Male"> Trans-Male <br>
+                <input type="radio" name="gender" value="Trans-Female"> Trans-Female <br>
+                <input type="radio" name="gender" value="Other"> Other: <input id="gender-other" type="text" style="visibility: hidden"> <br>
+
+                <p class="question-header">Sexual Orientation:</p>
+                <input type="radio" name="orientation" value="Heterosexual"> Hetereosexual / Straight <br>
+                <input type="radio" name="orientation" value="Homosexual"> Homosexual / Gay / Lesbian <br>
+                <input type="radio" name="orientation" value="Trans-Male"> Bisexual <br>
+                <input type="radio" name="orientation" value="Other"> Other: <input id="orientation-other" type="text" style="visibility: hidden"> <br>
+
+                <p class="question-header">Social Class:</p>
+                <input type="radio" name="class" value="Working Class"> Working Class <br>
+                <input type="radio" name="class" value="Lower Middle Class"> Lower Middle Class <br>
+                <input type="radio" name="class" value="Middle Class"> Middle Class <br>
+                <input type="radio" name="class" value="Upper Middle Class"> Upper Middle Class <br>
+                <input type="radio" name="class" value="Upper Class"> Upper Class <br>
+
+                <p><span class="question-header">Place of Birth (State, Country):</span>
+                    <input name="birth" id="birth" type="text"> </p>
+
+                <br>
+
+                <div style="text-align: right">
+                    <button id="demographics_task-1-instructions" style="text-align: center" class="button-green">NEXT</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--- Javascript on page load
+	============================================= -->
+    <!-- external js -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script type="text/javascript" src="js/external/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/external/howler.min.js"></script>
+    <script type="text/javascript" src="js/external/FileSaver.js"></script>
+    <script type="text/javascript" src="js/external/moment.js"></script>
+
+    <!-- common js -->
+    <script type="text/javascript" src="js/common/generic.js"></script>
+    <script type="text/javascript" src="js/common/imagePreLoader.js"></script>
+    <script type="text/javascript" src="js/common/eventTimer.js"></script>
+
+
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/task.js"></script>
+    <script>
+        $(document).ready(function() {
+            eventTimer.setTimeout(function() {
+                $("#load-div").hide();
+                $("#landing").show();
+            }, 500)
+
+
+        })
+    </script>
+</body>
+
+</html>
