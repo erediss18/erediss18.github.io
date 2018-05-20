@@ -1,273 +1,356 @@
-/**
- *
- * Misc functions
- * 
- * @link   nbrosowsky.github.io
- * @author Nicholaus P. Brosowsky <nbrosowsky@gmail.com>
- * @since  2018-05-20
- *
- */
+//* Required functions *//
+
+//pulls Assignment info//
+function gup(name) {
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var tmpURL = window.location.href;
+    var results = regex.exec(tmpURL);
+    if (results === null)
+        return "";
+    else
+        return results[1];
+}
 
 
-var g = function () {
-    //detects which browser the user is using and stores in var Browserinfo//
-    var BrowserDetect = {
-        init: function () {
-            this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
-            this.version = this.searchVersion(navigator.userAgent) ||
-                this.searchVersion(navigator.appVersion) ||
-                "an unknown version";
-            this.OS = this.searchString(this.dataOS) || "an unknown OS";
-        },
-        searchString: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                var dataString = data[i].string;
-                var dataProp = data[i].prop;
-                this.versionSearchString = data[i].versionSearch || data[i].identity;
-                if (dataString) {
-                    if (dataString.indexOf(data[i].subString) != -1)
-                        return data[i].identity;
-                } else if (dataProp)
+//opens full-screen window of "url"//
+function basicPopup(url) {
+    popupWindow = window.open(url, 'popUpWindow', 'height=' + screen.height + ',width=' + screen.width + ',\
+		left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,\
+		menubar=no,location=no,directories=no,status=yes');
+}
+
+
+
+//detects which browser the user is using and stores in var Browserinfo//
+var BrowserDetect = {
+    init: function () {
+        this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+        this.version = this.searchVersion(navigator.userAgent) ||
+            this.searchVersion(navigator.appVersion) ||
+            "an unknown version";
+        this.OS = this.searchString(this.dataOS) || "an unknown OS";
+    },
+    searchString: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            var dataString = data[i].string;
+            var dataProp = data[i].prop;
+            this.versionSearchString = data[i].versionSearch || data[i].identity;
+            if (dataString) {
+                if (dataString.indexOf(data[i].subString) != -1)
                     return data[i].identity;
-            }
-        },
-        searchVersion: function (dataString) {
-            var index = dataString.indexOf(this.versionSearchString);
-            if (index == -1) return;
-            return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
-        },
-        dataBrowser: [{
-            string: navigator.userAgent,
-            subString: "Chrome",
-            identity: "Chrome"
+            } else if (dataProp)
+                return data[i].identity;
+        }
+    },
+    searchVersion: function (dataString) {
+        var index = dataString.indexOf(this.versionSearchString);
+        if (index == -1) return;
+        return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+    },
+    dataBrowser: [{
+        string: navigator.userAgent,
+        subString: "Edge",
+        identity: "Edge"
+    },{
+        string: navigator.userAgent,
+        subString: "Chrome",
+        identity: "Chrome"
     }, {
-            string: navigator.userAgent,
-            subString: "OmniWeb",
-            versionSearch: "OmniWeb/",
-            identity: "OmniWeb"
+        string: navigator.userAgent,
+        subString: "OmniWeb",
+        versionSearch: "OmniWeb/",
+        identity: "OmniWeb"
     }, {
-            string: navigator.vendor,
-            subString: "Apple",
-            identity: "Safari",
-            versionSearch: "Version"
+        string: navigator.vendor,
+        subString: "Apple",
+        identity: "Safari",
+        versionSearch: "Version"
     }, {
-            prop: window.opera,
-            identity: "Opera",
-            versionSearch: "Version"
+        prop: window.opera,
+        identity: "Opera",
+        versionSearch: "Version"
     }, {
-            string: navigator.vendor,
-            subString: "iCab",
-            identity: "iCab"
+        string: navigator.vendor,
+        subString: "iCab",
+        identity: "iCab"
     }, {
-            string: navigator.vendor,
-            subString: "KDE",
-            identity: "Konqueror"
+        string: navigator.vendor,
+        subString: "KDE",
+        identity: "Konqueror"
     }, {
-            string: navigator.userAgent,
-            subString: "Firefox",
-            identity: "Firefox"
+        string: navigator.userAgent,
+        subString: "Firefox",
+        identity: "Firefox"
     }, {
-            string: navigator.vendor,
-            subString: "Camino",
-            identity: "Camino"
+        string: navigator.vendor,
+        subString: "Camino",
+        identity: "Camino"
     }, { // for newer Netscapes (6+)
-            string: navigator.userAgent,
-            subString: "Netscape",
-            identity: "Netscape"
+        string: navigator.userAgent,
+        subString: "Netscape",
+        identity: "Netscape"
     }, {
-            string: navigator.userAgent,
-            subString: "MSIE",
-            identity: "Explorer",
-            versionSearch: "MSIE"
+        string: navigator.userAgent,
+        subString: "MSIE",
+        identity: "Explorer",
+        versionSearch: "MSIE"
     }, {
-            string: navigator.userAgent,
-            subString: "Gecko",
-            identity: "Mozilla",
-            versionSearch: "rv"
+        string: navigator.userAgent,
+        subString: "Gecko",
+        identity: "Mozilla",
+        versionSearch: "rv"
     }, { // for older Netscapes (4-)
-            string: navigator.userAgent,
-            subString: "Mozilla",
-            identity: "Netscape",
-            versionSearch: "Mozilla"
+        string: navigator.userAgent,
+        subString: "Mozilla",
+        identity: "Netscape",
+        versionSearch: "Mozilla"
     }],
-        dataOS: [{
-            string: navigator.platform,
-            subString: "Win",
-            identity: "Windows"
+    dataOS: [{
+        string: navigator.platform,
+        subString: "Win",
+        identity: "Windows"
     }, {
-            string: navigator.platform,
-            subString: "Mac",
-            identity: "Mac"
+        string: navigator.platform,
+        subString: "Mac",
+        identity: "Mac"
     }, {
-            string: navigator.userAgent,
-            subString: "iPhone",
-            identity: "iPhone/iPod"
+        string: navigator.userAgent,
+        subString: "iPhone",
+        identity: "iPhone/iPod"
     }, {
-            string: navigator.platform,
-            subString: "Linux",
-            identity: "Linux"
+        string: navigator.platform,
+        subString: "Linux",
+        identity: "Linux"
     }]
 
+};
+BrowserDetect.init();
+
+var BrowserInfo = [];
+BrowserInfo[0] = BrowserDetect.browser;
+BrowserInfo[1] = BrowserDetect.version;
+BrowserInfo[2] = BrowserDetect.OS;
+
+
+//** Task.html **//
+
+function basicPopup2(url) {
+    popupWindow2 = window.open(url, 'popUpWindow2', 'height= 300,width=400,\
+		left=100,top=100,resizable=yes,scrollbars=yes,toolbar=no,\
+		menubar=no,location=no,directories=no,status=no');
+}
+
+
+
+// Sets up the instruction pop-up //
+var modalInit = function () {
+    // Get the modal
+    var modal = document.getElementById('popUpInstructions');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("showInstructions");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
     };
-    BrowserDetect.init();
 
-    var BrowserInfo = [];
-    BrowserInfo[0] = BrowserDetect.browser;
-    BrowserInfo[1] = BrowserDetect.version;
-    BrowserInfo[2] = BrowserDetect.OS;
-
-
-    /* Disable the backspace key / can add other keys if necessary */
-    var disableBS = function () {
-        /*
-         * this swallows backspace keys on any non-input element.
-         * stops backspace -> back
-         */
-        var rx = /INPUT|SELECT|TEXTAREA/i;
-
-        $(document).bind("keydown keypress", function (e) {
-            if (e.which == 8) { // 8 == backspace
-                if (!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly) {
-                    e.preventDefault();
-                }
-            }
-        });
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
     };
 
-
-
-    /* compute average of array */
-    function calcAVG(array) {
-        var total = 0;
-        for (var i = 0; i < array.length; i++) {
-            total += array[i];
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
-        var avg = total / array.length;
-        return (avg);
-    }
-
-    /* shuffle an array */
-    function shuffle(array) {
-        var tmp, current, top = array.length;
-        if (top)
-            while (--top) {
-                current = Math.floor(Math.random() * (top + 1));
-                tmp = array[current];
-                array[current] = array[top];
-                array[top] = tmp;
-            }
-
-        return array;
-    }
-
-
-    // function to get radio response
-    // returns "no response" if nothing is checked
-    // checks for an "other" option and adds the other text 
-    function getRadio(x) {
-        var response = "no response"
-        // if a response exists...
-        if ($("[name='" + x + "']:checked").val()) {
-
-            // check to see if it is other.. if so, grab the other text input
-            if ($("[name='" + x + "']:checked").val() == "Other") {
-                var temp = $("#" + x + "-other").val() ? $("#" + x + "-other").val() : "no response"
-                response = "other: " + temp
-            } else {
-                response = $("[name='" + x + "']:checked").val()
-            }
-
-        }
-
-        return response
-
     };
+};
 
-    function clearRadio(x) {
-        // clear the previous radio selections
-        document.querySelectorAll('input[name=' + x + ']').forEach(function (x) {
-            x.checked = false
-        })
-    };
-
-    function validateResponse(x) {
-        var t;
-        (Object.prototype.toString.call(x) === '[object Array]') ? t = x: t = [].concat(x);
-
-
-        for (i = 0; i <= t.length - 1; i++) {
-            if (document.getElementsByName(t[i]).length > 0) {
-                if (document.getElementsByName(t[i])[0].type == "radio") {
-                    if (getRadio(t[i]) === "no response" || getRadio(t[i]) === "other: no response") {
-                        return false
-                    }
-                } else if (document.getElementsByName(t[i])[0].type == "text" || document.getElementsByName(t[i])[0].type == "textarea") {
-                    if ($("[name=" + t[i] + "]").val() === "") {
-                        return false
-                    }
-
-                }
-            }
-
-
-        }
-
-        return true
-
-    };
-
+/* Disable the backspace key / can add other keys if necessary */
+var disableBS = function () {
     /*
-    Copyright (c) 2011 Andrei Mackenzie
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-    */
+     * this swallows backspace keys on any non-input element.
+     * stops backspace -> back
+     */
+    var rx = /INPUT|SELECT|TEXTAREA/i;
 
-    // Compute the edit distance between the two given strings
-    function editDist(a, b) {
-        if (a.length == 0) return b.length;
-        if (b.length == 0) return a.length;
-
-        var matrix = [];
-
-        // increment along the first column of each row
-        var i;
-        for (i = 0; i <= b.length; i++) {
-            matrix[i] = [i];
-        }
-
-        // increment each column in the first row
-        var j;
-        for (j = 0; j <= a.length; j++) {
-            matrix[0][j] = j;
-        }
-
-        // Fill in the rest of the matrix
-        for (i = 1; i <= b.length; i++) {
-            for (j = 1; j <= a.length; j++) {
-                if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
-                        Math.min(matrix[i][j - 1] + 1, // insertion
-                            matrix[i - 1][j] + 1)); // deletion
-                }
+    $(document).bind("keydown keypress", function (e) {
+        if (e.which == 8) { // 8 == backspace
+            if (!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly) {
+                e.preventDefault();
             }
         }
+    });
+};
 
-        return matrix[b.length][a.length];
-    };
 
 
-    return {
-        BrowserInfo: BrowserInfo,
-        disableBS: disableBS,
-        calcAVG: calcAVG,
-        shuffle: shuffle,
-        getRadio: getRadio,
-        clearRadio: clearRadio,
-        validateResponse: validateResponse,
-        editDist: editDist
+
+/* compute average of array */
+function calcAVG(array) {
+    var total = 0;
+    for (var i = 0; i < array.length; i++) {
+        total += array[i];
+    }
+    var avg = total / array.length;
+    return (avg);
+}
+
+
+
+/* shuffle an array */
+function shuffle(array) {
+    var tmp, current, top = array.length;
+    if (top)
+        while (--top) {
+            current = Math.floor(Math.random() * (top + 1));
+            tmp = array[current];
+            array[current] = array[top];
+            array[top] = tmp;
+        }
+
+    return array;
+}
+
+
+
+/*
+Copyright (c) 2011 Andrei Mackenzie
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+// Compute the edit distance between the two given strings
+editDist = function (a, b) {
+    if (a.length == 0) return b.length;
+    if (b.length == 0) return a.length;
+
+    var matrix = [];
+
+    // increment along the first column of each row
+    var i;
+    for (i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
     }
 
-}()
+    // increment each column in the first row
+    var j;
+    for (j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+    }
+
+    // Fill in the rest of the matrix
+    for (i = 1; i <= b.length; i++) {
+        for (j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) == a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
+                    Math.min(matrix[i][j - 1] + 1, // insertion
+                        matrix[i - 1][j] + 1)); // deletion
+            }
+        }
+    }
+
+    return matrix[b.length][a.length];
+};
+
+
+var convertDate = function (today) {
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    var h = today.getHours();
+    var m = today.getMinutes();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    if (h < 10) {
+        h = '0' + h
+    }
+
+    if (m < 10) {
+        m = '0' + m
+    }
+
+
+    today = h + ":" + m + "-" + yyyy + "-" + mm + "-" + dd
+
+    return today
+}
+
+
+function getAllUrlParams(url) {
+
+  // get query string from url (optional) or window
+  var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+  // we'll store the parameters here
+  var obj = {};
+
+  // if query string exists
+  if (queryString) {
+
+    // stuff after # is not part of query string, so get rid of it
+    queryString = queryString.split('#')[0];
+
+    // split our query string into its component parts
+    var arr = queryString.split('&');
+
+    for (var i=0; i<arr.length; i++) {
+      // separate the keys and the values
+      var a = arr[i].split('=');
+
+      // in case params look like: list[]=thing1&list[]=thing2
+      var paramNum = undefined;
+      var paramName = a[0].replace(/\[\d*\]/, function(v) {
+        paramNum = v.slice(1,-1);
+        return '';
+      });
+
+      // set parameter value (use 'true' if empty)
+      var paramValue = typeof(a[1])==='undefined' ? true : a[1];
+
+      // (optional) keep case consistent
+      paramName = paramName.toLowerCase();
+      paramValue = paramValue.toLowerCase();
+
+      // if parameter name already exists
+      if (obj[paramName]) {
+        // convert value to array (if still string)
+        if (typeof obj[paramName] === 'string') {
+          obj[paramName] = [obj[paramName]];
+        }
+        // if no array index number specified...
+        if (typeof paramNum === 'undefined') {
+          // put the value on the end of the array
+          obj[paramName].push(paramValue);
+        }
+        // if array index number specified...
+        else {
+          // put the value at that index number
+          obj[paramName][paramNum] = paramValue;
+        }
+      }
+      // if param name doesn't exist yet, set it
+      else {
+        obj[paramName] = paramValue;
+      }
+    }
+  }
+
+  return obj;
+}
