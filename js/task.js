@@ -445,7 +445,7 @@ var task3 = function () {
     function blank() {
         // initial blank screen / 2000 ms
         $("#task-3-display").hide();
-        eventTimer.setTimeout(image1, 200);
+        eventTimer.setTimeout(image1, 2000);
     };
 
     // 2. display image for 500 ms
@@ -523,10 +523,11 @@ var task3 = function () {
         $("#task-3-display").show();
 
         // 2000 ms
-        eventTimer.setTimeout(image2, 200)
+        eventTimer.setTimeout(image2, 2000)
 
     };
 
+    
     // 6. second image presentation for 5000 ms
     function image2() {
         // display image
@@ -534,7 +535,7 @@ var task3 = function () {
         $("#task-3-display").show();
 
         // trigger choice display in 5000 ms
-        eventTimer.setTimeout(rate, 500)
+        eventTimer.setTimeout(rate, 5000)
     }
 
     // 7. rate intensity of emotions and indicate how you coped
