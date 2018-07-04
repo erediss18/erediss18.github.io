@@ -308,7 +308,7 @@ var task2 = function () {
                 trialCounter = 0;
                 eventTimer.setTimeout(function () {
                     $("#main-display").html("")
-                    task3.create_inst();
+                    task3b.create_inst();
                 }, 500);
 
             }
