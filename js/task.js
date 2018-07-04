@@ -719,7 +719,7 @@ var task3b = function () {
     var markup_exp = [
         '<div id="task-3b" class="standard-display absolute-center" style="display: none">',
             '<div id="task-3b-display" style="width:100%;">',
-               ' <p> <strong>Please read each sentence carefully and answer as to how you have dealt with your feelings during the past month.  </strong> </p>',
+               ' <p> <strong>Please read each statement carefully and indicate how true, <em>in general</em>, each statement is for you.  </strong> </p>',
                ' <br>',
                 '<p id="task-3b-prompt">I often think that I respond with feelings that others would not have.</p>',
                 '<br>',
