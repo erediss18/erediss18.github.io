@@ -6,7 +6,8 @@
  *      1. LANDING & DEMOGRAPHICS
  *      2. TASK 1: IDENTIFY EMOTIONS (SENTENCES)
  *      3. TASK 2: IDENTIFY EMOTIONS (FACES)
- *      4. TASK 3: USING COPING STRATEGIES WITH EMOTIONAL IMAGES 
+ *      4. TASK 3: USING COPING STRATEGIES WITH EMOTIONAL IMAGES // omitted
+ *      4b. Task 3b: COPING ASSESSMENT QUESTIONNAIRE
  *      5. TASK 4: EMOTION QUESTIONNAIRE
  *      6. TASK 5: REVERSE MIRROR PERSISTENCE TASK
  *      7. END OF EXP
@@ -18,8 +19,11 @@
  */
 
 preLoad.addImages(preLoad.addURL("images/", [
-        "001Happy.png", "003Anger.png", "004Surprise.png", "006Neutral.png", "009Fear.png", "011Surprise.png", "012Disgust.png", "015Sad.png", "016Fear.png", "020Disgust.png", "021Neutral.png", "026Surprise.png", "028Neutral.png", "029Happy.png", "032Disgust.png", "033Neutral.png", "034Happy.png", "036Sad.png", "037Fear.png", "039Surprise.png", "041Neutral.png", "042Happy.png", "043Sad.png", "044Anger.png", "045Surprise.png", "046Disgust.png", "053Anger.png", "054Surprise.png", "059Fear.png", "061Anger.png", "064Disgust.png", "067Sad.png", "069Anger.png", "074Happy.png", "076Sad.png", "079Fear.png", "083Neutral.png", "087Sad.png", "088Fear.png", "091Disgust.png", "093Happy.png", "094Sad.png", "096Anger.png", "097Surprise.png", "101Happy.png", "104Fear.png", "105Anger.png", "109Disgust.png", "110Neutral.png", "1120.jpg", "1301.jpg", "2053.jpg", "2278.jpg", "2301.jpg", "2312.jpg", "2490.jpg", "2661.jpg", "2691.jpg", "2694.jpg", "2700.jpg", "2703.jpg", "2710.jpg", "2800.jpg", "3000.jpg", "3001.jpg", "3053.jpg", "3068.jpg", "3069.jpg", "3140.jpg", "3150.jpg", "3180.jpg", "3212.jpg", "3216.jpg", "3230.jpg", "3261.jpg", "3500.jpg", "3530.jpg", "6010.jpg", "6190.jpg", "6211.jpg", "6212.jpg", "6312.jpg", "6313.jpg", "6563.jpg", "6836.jpg", "6940.jpg", "7136.jpg", "7360.jpg", "7361.jpg"
+        "001Happy.png", "003Anger.png", "004Surprise.png", "006Neutral.png", "009Fear.png", "011Surprise.png", "012Disgust.png", "015Sad.png", "016Fear.png", "020Disgust.png", "021Neutral.png", "026Surprise.png", "028Neutral.png", "029Happy.png", "032Disgust.png", "033Neutral.png", "034Happy.png", "036Sad.png", "037Fear.png", "039Surprise.png", "041Neutral.png", "042Happy.png", "043Sad.png", "044Anger.png", "045Surprise.png", "046Disgust.png", "053Anger.png", "054Surprise.png", "059Fear.png", "061Anger.png", "064Disgust.png", "067Sad.png", "069Anger.png", "074Happy.png", "076Sad.png", "079Fear.png", "083Neutral.png", "087Sad.png", "088Fear.png", "091Disgust.png", "093Happy.png", "094Sad.png", "096Anger.png", "097Surprise.png", "101Happy.png", "104Fear.png", "105Anger.png", "109Disgust.png", "110Neutral.png"
         ]))
+
+// task 3 images
+//, "1120.jpg", "1301.jpg", "2053.jpg", "2278.jpg", "2301.jpg", "2312.jpg", "2490.jpg", "2661.jpg", "2691.jpg", "2694.jpg", "2700.jpg", "2703.jpg", "2710.jpg", "2800.jpg", "3000.jpg", "3001.jpg", "3053.jpg", "3068.jpg", "3069.jpg", "3140.jpg", "3150.jpg", "3180.jpg", "3212.jpg", "3216.jpg", "3230.jpg", "3261.jpg", "3500.jpg", "3530.jpg", "6010.jpg", "6190.jpg", "6211.jpg", "6212.jpg", "6312.jpg", "6313.jpg", "6563.jpg", "6836.jpg", "6940.jpg", "7136.jpg", "7360.jpg", "7361.jpg"
 
 preLoad.loadImages();
 
@@ -348,339 +352,473 @@ var task2 = function () {
 //
 //TODO: RESET DISPLAY TIMES TO PROPER
 //
+//
+//var task3 = function () {
+//    var time1,
+//        time2,
+//        trialCounter = 0
+//
+//    var markup_inst = [
+//         '<div id="task-3-instructions" class="standard-display absolute-center">',
+//            '<div style="width:80%">',
+//                '<p>The purpose of this next task is to observe the manner in which individuals cope with emotionally-charged images.</p>',
+//                '<p>For each trial, an image will be briefly displayed. After viewing the image, you will be given two options of how to cope. When the image is presented again, cope using the option you chose.</p><br>',
+//                '<p>Throughout this task, your coping options will be:</p>',
+//                '<ul>',
+//                    '<li><strong>Distract:</strong> While looking at the image, think about something unemotional.</li>',
+//                    '<li><strong>Reappraise:</strong> While looking at the image, consider the image having a different meaning.</li>',
+//                    '<li><strong>Suppress:</strong> While looking at the image, try not to have an emotional reaction.</li>',
+//                    '<li><strong>Accept:</strong>While looking at the image, acknowledge your emotional reaction without trying to change it </li>',
+//                '</ul>',
+//               ' <br>',
+//                '<p> Let’s start with a couple of practice trials.</p>',
+//               ' <div style="text-align: right">',
+//                    '<button id="task-3-instructions_task-3" style="text-align: right" class="button-green">NEXT</button>',
+//                '</div>',
+//           ' </div>',
+//        '</div>'
+//    ].join("\n");
+//
+//    var markup_instB = [
+//        '<div id="task-3-instructions-B" class="standard-display absolute-center" ">',
+//            '<div style="width:80%;">',
+//                '<p>Great! Let’s do a couple more. This time, use your own strategies for <em>distract, reappraise, suppress, and accept.</em></p>',
+//                '<ul>',
+//                    '<li><strong>Distract:</strong> While looking at the image, think about something unemotional.</li>',
+//                    '<li><strong>Reappraise:</strong> While looking at the image, consider the image having a different meaning.</li>',
+//                    '<li><strong>Suppress:</strong> While looking at the image, try not to have an emotional reaction.</li>',
+//                    '<li><strong>Accept:</strong>While looking at the image, acknowledge your emotional reaction without trying to change it.</li>',
+//                '</ul>',
+//                '<br>',
+//                '<div style="text-align: right">',
+//                    '<button id="task-3-start-experiment" style="text-align: right" class="button-green">NEXT</button>',
+//                '</div>',
+//           ' </div>',
+//        '</div>'
+//    ].join("\n");
+//
+//    var markup_exp = [
+//        '<div id="task-3" class="standard-display absolute-center" style="display: none">',
+//            '<div id="task-3-display" style="width:100%;">',
+//            '</div>',
+//        '</div>'
+//    ].join("\n");
+//
+//    function create_inst() {
+//        $("#main-display").html(markup_inst);
+//
+//        // hide instructions trigger first trial
+//        $("#task-3-instructions_task-3").click(function () {
+//            $("#main-display").html("");
+//
+//            task3.create_exp();
+//            $("#task-3").show();
+//
+//            // end instructions / triggers first trial //
+//            task3.blank();
+//        })
+//    };
+//
+//    function create_exp() {
+//        $("#main-display").html(markup_exp)
+//    };
+//
+//    function create_instB() {
+//        $("#main-display").html(markup_instB);
+//
+//        // restart task 3 after second instructions
+//        $("#task-3-start-experiment").click(function () {
+//            $("#task-3-instructions-B").remove();
+//            task3.create_exp();
+//            $("#task-3").show();
+//            task3.blank();
+//        })
+//
+//    }
+//
+//    /// task 3
+//    var feedbackTypes = {
+//        Distract: "Distract involves thinking about something unemotional and unrelated to the image.",
+//        Reappraise: "This is an example of reappraise, or thinking about the image in a way that gives it different meaning.",
+//        Suppress: "Suppress involves pushing away emotional reactions.",
+//        Accept: "This is an example of accept, or acknowledging your feelings without trying to change them."
+//    }
+//
+//
+//    /// all events for task 3 in chronological order
+//    // 1. blank screen for 2000 ms
+//    function blank() {
+//        // initial blank screen / 2000 ms
+//        $("#task-3-display").hide();
+//        eventTimer.setTimeout(image1, 2000);
+//    };
+//
+//    // 2. display image for 500 ms
+//    function image1() {
+//        // display image
+//        $("#task-3-display").html("<img style='width: 100%' src=images/" + data.task3[trialCounter].image + ">")
+//        $("#task-3-display").show();
+//
+//        // trigger choice display in 500 ms
+//        eventTimer.setTimeout(choose, 500)
+//
+//    };
+//
+//    // 3. Choose coping strategy
+//    function choose() {
+//        // add display with coping choices
+//        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
+//            "<p class='task-3-choose'>Choose:</p>" +
+//            "<p class='task-3-choose task-3-choices'>" + data.task3[trialCounter].choices[0] + "</p>" +
+//            "<p class='task-3-choose'>or</p>" +
+//            "<p class='task-3-choose task-3-choices'>" + data.task3[trialCounter].choices[1] + "</p>" +
+//            "</div>"
+//        );
+//
+//        // get timestamp of presentation
+//        timer1 = window.performance.now();
+//
+//        // make choices clickable
+//        $(".task-3-choices").click(function () {
+//            var r = $(this).text()
+//            //            console.log(r);
+//            recordResponse("choices", r);
+//        })
+//    };
+//
+//    // (PRACTICE ONLY)
+//    // 4. Choose example that best fits coping strategy
+//    function practice_choose() {
+//        // add display with coping choices
+//        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
+//            "<p class='task-3-examples-header'>Which of the following, is a good example of " + data.task3[trialCounter].choose_cope + "?</p>" +
+//            "<ul style='list-style-type: none; padding: 0;'>" +
+//            "<li id='0' class='task-3-examples '>" + data.task3[trialCounter].examples[0] + "</li>" +
+//            "<li id='1' class='task-3-examples '>" + data.task3[trialCounter].examples[1] + "</li>" +
+//            "<li id='2' class='task-3-examples '>" + data.task3[trialCounter].examples[2] + "</li>" +
+//            "<li id='3' class='task-3-examples '>" + data.task3[trialCounter].examples[3] + "</li>" +
+//            "</div>" +
+//            "<div id='task-3-feedback' style='height: 150px'></div>"
+//        );
+//
+//
+//
+//        // get timestamp of presentation
+//        timer1 = window.performance.now();
+//
+//        // make choices clickable
+//        $(".task-3-examples").click(function () {
+//            var r = $(this).attr('id')
+//            //            console.log(r);
+//            recordResponse("practice", r);
+//        })
+//
+//        // show display
+//        $("#task-3-display").show();
+//    };
+//
+//    // 5. instruction to prepare strategy
+//    function prepare() {
+//
+//        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
+//            "<p style='font-size: 40px'>Prepare to </p>" +
+//            "<p style='font-size: 40px'>" + data.task3[trialCounter].choose_cope + "</p>"
+//        );
+//
+//        $("#task-3-display").show();
+//
+//        // 2000 ms
+//        eventTimer.setTimeout(image2, 2000)
+//
+//    };
+//
+//    
+//    // 6. second image presentation for 5000 ms
+//    function image2() {
+//        // display image
+//        $("#task-3-display").html("<img style='width: 100%' src=images/" + data.task3[trialCounter].image + ">")
+//        $("#task-3-display").show();
+//
+//        // trigger choice display in 5000 ms
+//        eventTimer.setTimeout(rate, 5000)
+//    }
+//
+//    // 7. rate intensity of emotions and indicate how you coped
+//    function rate() {
+//
+//        // insert rating and text questions
+//        $("#task-3-display").html(
+//            "<div class='flexCenter flexColumn'>" +
+//            "<p style='font-size: 20px;'>Rate the intensity of your emotions</p>" +
+//            "<div style='width: 100%' class='flexRow'>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='1'><p style='margin: 5px; text-align: center; font-size: 30px'>1</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='2'><p style='margin: 5px; text-align: center; font-size: 30px'>2</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='3'><p style='margin: 5px; text-align: center; font-size: 30px'>3</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='4'><p style='margin: 5px; text-align: center; font-size: 30px'>4</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='5'><p style='margin: 5px; text-align: center; font-size: 30px'>5</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='6'><p style='margin: 5px; text-align: center; font-size: 30px'>6</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='7'><p style='margin: 5px; text-align: center; font-size: 30px'>7</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='8'><p style='margin: 5px; text-align: center; font-size: 30px'>8</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='9'><p style='margin: 5px; text-align: center; font-size: 30px'>9</p></div>" +
+//            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='10'><p style='margin: 5px; text-align: center; font-size: 30px'>10</p></div>" +
+//            "</div>" +
+//            "<br>" +
+//            "<p style='font-size: 20px'>How did you " + data.task3[trialCounter].choose_cope + "?</p>" +
+//            "<textarea name='task-3-how' id='task-3-how' rows='3' style='width: 100%; font-size: 20px'></textarea>" +
+//            "<div style='text-align: right'><button id='task-3-rating-submit' style='text-align: right;' class='button-green'>Submit</button></div>" +
+//            "</div>"
+//        );
+//
+//        // Submit button function for newly created button
+//        $("#task-3-rating-submit").click(function () {
+//            if (!(g.validateResponse(["task-3-rate", "task-3-how"]))) {
+//                alert("You must give a repsonse before moving forward")
+//                return
+//            }
+//            // when submit button is clicked, collect responses and advance to the next trial
+//            task3.nextTrial();
+//        });
+//
+//
+//        // get timestamp for stimulus presentation
+//        timer1 = window.performance.now();
+//
+//        // show display
+//        $("#task-3-display").show();
+//    };
+//
+//    // record responses from the choice and example 
+//    function recordResponse(type, response) {
+//        // records clicked response and triggers next screen
+//
+//        timer2 = window.performance.now()
+//        // if on the choice trial...
+//        if (type == "choices") {
+//            $("#task-3-display").hide();
+//            $("#task-3-display").html("");
+//
+//            data.task3[trialCounter].choose_cope = response;
+//            data.task3[trialCounter].choose_cope_RT = timer2 - timer1;
+//
+//            // if a practice trial trigger practice otherwise skip
+//            if (data.task3[trialCounter].practice == true) {
+//                eventTimer.setTimeout(practice_choose, 250)
+//            } else {
+//                eventTimer.setTimeout(prepare, 250)
+//            }
+//
+//        }
+//
+//        if (type == "practice") {
+//            var temp_response = data.task3[trialCounter].example_types[response]
+//            data.task3[trialCounter].choose_example.push(temp_response);
+//            data.task3[trialCounter].choose_example_RT.push(timer2 - timer1);
+//
+//            // determine accuracy
+//            if (data.task3[trialCounter].example_types[response] == data.task3[trialCounter].choose_cope) {
+//                // if correct display feedback and continue button
+//                $("#task-3-feedback").html("<h3 style='width: 100%; text-align: center; margin: 0'>Correct: <em>" + feedbackTypes[temp_response] + "</em></h3>" +
+//                    "<div style='text-align: right'><button id='task-3-continue' style='text-align: right; margin-bottom: 0' class='button-green'>continue</button></div>")
+//
+//
+//                $("#task-3-continue").click(function () {
+//                    $("#task-3-display").hide();
+//                    $("#task-3-display").html("");
+//                    eventTimer.setTimeout(prepare, 250)
+//                });
+//
+//            } else {
+//                data.task3[trialCounter].practice_errors++
+//                    // if incorrect, display feedback and instructions to try again.
+//                    $("#task-3-feedback").html("<h3 style='width: 100%; text-align: center; margin: 0'>Incorrect: <em>" + feedbackTypes[temp_response] + "</em> Please try again.</h3>")
+//
+//            }
+//        }
+//    };
+//
+//    // triggers next trial and record rating responses
+//    function nextTrial() {
+//        // hide display
+//        $("#task-3-display").hide();
+//
+//        // get response timestamp
+//        timer2 = window.performance.now();
+//
+//        // record rating and text response
+//        data.task3[trialCounter].rating = $('[name="task-3-rate"]:checked').val() ? $('[name="task-3-rate"]:checked').val() : "no response";
+//        data.task3[trialCounter].how = $('#task-3-how').val() ? $('#task-3-how').val() : "no response";
+//        data.task3[trialCounter].rating_how_RT = timer2 - timer1
+//
+//        //advance trial counter
+//        trialCounter++
+//
+//        // if practice trials are over, show new instructions
+//        if (trialCounter == 20) {
+//            $("#task-3").hide();
+//            create_instB();
+//
+//            // if more trials left trigger next
+//        } else if (trialCounter < data.task3.length) {
+//            blank();
+//            // if no more trials, trigger next instructions
+//        } else {
+//            $("#main-display").html("");
+//            eventTimer.setTimeout(function () {
+//                task4.create_inst();
+//            }, 250)
+//        }
+//
+//    }
+//
+//    return {
+//        create_inst: create_inst,
+//        create_instB: create_instB,
+//        create_exp: create_exp,
+//        blank: blank,
+//        image1: image1,
+//        practice_chooose: practice_choose,
+//        prepare: prepare,
+//        image2: image2,
+//        rate: rate,
+//        recordResponse: recordResponse,
+//        nextTrial: nextTrial
+//    }
+//
+//}()
+//
 
-var task3 = function () {
+
+/**
+ * TASK 3b
+ *
+ *   
+ *
+ **/
+
+// Task 3B functions
+var task3b = function () {
     var time1,
         time2,
         trialCounter = 0
 
-    var markup_inst = [
-         '<div id="task-3-instructions" class="standard-display absolute-center">',
-            '<div style="width:80%">',
-                '<p>The purpose of this next task is to observe the manner in which individuals cope with emotionally-charged images.</p>',
-                '<p>For each trial, an image will be briefly displayed. After viewing the image, you will be given two options of how to cope. When the image is presented again, cope using the option you chose.</p><br>',
-                '<p>Throughout this task, your coping options will be:</p>',
-                '<ul>',
-                    '<li><strong>Distract:</strong> While looking at the image, think about something unemotional.</li>',
-                    '<li><strong>Reappraise:</strong> While looking at the image, consider the image having a different meaning.</li>',
-                    '<li><strong>Suppress:</strong> While looking at the image, try not to have an emotional reaction.</li>',
-                    '<li><strong>Accept:</strong>While looking at the image, acknowledge your emotional reaction without trying to change it </li>',
-                '</ul>',
-               ' <br>',
-                '<p> Let’s start with a couple of practice trials.</p>',
-               ' <div style="text-align: right">',
-                    '<button id="task-3-instructions_task-3" style="text-align: right" class="button-green">NEXT</button>',
-                '</div>',
-           ' </div>',
-        '</div>'
-    ].join("\n");
 
-    var markup_instB = [
-        '<div id="task-3-instructions-B" class="standard-display absolute-center" ">',
-            '<div style="width:80%;">',
-                '<p>Great! Let’s do a couple more. This time, use your own strategies for <em>distract, reappraise, suppress, and accept.</em></p>',
-                '<ul>',
-                    '<li><strong>Distract:</strong> While looking at the image, think about something unemotional.</li>',
-                    '<li><strong>Reappraise:</strong> While looking at the image, consider the image having a different meaning.</li>',
-                    '<li><strong>Suppress:</strong> While looking at the image, try not to have an emotional reaction.</li>',
-                    '<li><strong>Accept:</strong>While looking at the image, acknowledge your emotional reaction without trying to change it.</li>',
-                '</ul>',
+    var markup_inst = [
+        '<div id="task-3b-instructions" class="standard-display absolute-center">',
+            '<div style="width:80%">',
+                '<p>For this next task, we are interested in how you typically deal with situations and problems. Different people use different strategies to deal with situations and problems in their lives. On the next few pages are a number of strategies that people may use to deal with situations and problems. A number of the items refer to dealing with situations at work or school. If you are not currently working or attending school, answer these items instead using your daily duties and activities. </p>',
+                '<p> Please read each statement carefully and indicate how true,<strong><em> in general</strong></em>, each statement is for you. </p>',
                 '<br>',
-                '<div style="text-align: right">',
-                    '<button id="task-3-start-experiment" style="text-align: right" class="button-green">NEXT</button>',
+               ' <div style="text-align: right">',
+                    '<button id="task-3b-instructions_task-3b" style="text-align: right" class="button-green">NEXT</button>',
                 '</div>',
            ' </div>',
-        '</div>'
-    ].join("\n");
+       ' </div>'
+    ].join("\n")
+
 
     var markup_exp = [
-        '<div id="task-3" class="standard-display absolute-center" style="display: none">',
-            '<div id="task-3-display" style="width:100%;">',
-            '</div>',
-        '</div>'
+        '<div id="task-3b" class="standard-display absolute-center" style="display: none">',
+            '<div id="task-3b-display" style="width:100%;">',
+               ' <p> <strong>Please read each sentence carefully and answer as to how you have dealt with your feelings during the past month.  </strong> </p>',
+               ' <br>',
+                '<p id="task-3b-prompt">I often think that I respond with feelings that others would not have.</p>',
+                '<br>',
+               ' <div class="flexCenter flexRow" style="width: 100%">',
+                    '<div style="width: 18%; height: 120px; margin: 1%; text-align: center" class="flexColumn">',
+                        '<input style="margin: 0" type="radio" name="task-3b-radio" value="1">',
+                        '<p style="font-size: 20px; margin-bottom: 0">1</p>',
+                        '<p style="height: 33.333%"> Not at all true for me</p>',
+                    '</div>',
+                    '<div style="width: 18%; height: 120px; margin: 1%; text-align: center" class="flexColumn">',
+                        '<input style="margin: 0" type="radio" name="task-3b-radio" value="2">',
+                        '<p style="font-size: 20px; margin-bottom: 0">2</p>',
+                       ' <p style="height: 33.333%"> Somewhat true for me</p>',
+                    '</div>',
+                    '<div style="width: 18%; height: 120px; margin: 1%; text-align: center" class="flexColumn">',
+                        '<input style="margin: 0" type="radio" name="task-3b-radio" value="3">',
+                        '<p style="font-size: 20px; margin-bottom: 0">3</p>',
+                        '<p style="height: 33.333%"> Moderately true for me</p>',
+                    '</div>',
+                    '<div style="width: 18%; height: 120px; margin: 1%; text-align: center" class="flexColumn">',
+                        '<input style="margin: 0" type="radio" name="task-3b-radio" value="4">',
+                        '<p style="font-size: 20px; margin-bottom: 0">4</p>',
+                        '<p style="height: 33.333%"> very much true for me</p>',
+                    '</div>',
+
+                    '<div style="width: 18%; height: 120px; margin: 1%; text-align: center" class="flexColumn">',
+                       ' <input style="margin: 0" type="radio" name="task-3b-radio" value="5">',
+                        '<p style="font-size: 20px; margin-bottom: 0">5</p>',
+                        '<p style="height: 33.333%"> Extremely true for me</p>',
+                    '</div>',
+               ' </div>',
+               ' <div style="text-align: right">',
+                    '<button id="task-3b-submit" style="text-align: right" class="button-green">NEXT</button>',
+                '</div>',
+           ' </div>',
+       ' </div>'
+
     ].join("\n");
 
     function create_inst() {
-        $("#main-display").html(markup_inst);
+        $("#main-display").html(markup_inst)
 
-        // hide instructions trigger first trial
-        $("#task-3-instructions_task-3").click(function () {
+        $("#task-3b-instructions_task-3b").click(function () {
             $("#main-display").html("");
+            task3b.create_exp();
 
-            task3.create_exp();
-            $("#task-3").show();
-
-            // end instructions / triggers first trial //
-            task3.blank();
-        })
+            trialCounter = 0;
+            task3b.start();
+        });
     };
 
     function create_exp() {
-        $("#main-display").html(markup_exp)
-    };
+        $("#main-display").html(markup_exp);
 
-    function create_instB() {
-        $("#main-display").html(markup_instB);
-
-        // restart task 3 after second instructions
-        $("#task-3-start-experiment").click(function () {
-            $("#task-3-instructions-B").remove();
-            task3.create_exp();
-            $("#task-3").show();
-            task3.blank();
-        })
-
-    }
-
-    /// task 3
-    var feedbackTypes = {
-        Distract: "Distract involves thinking about something unemotional and unrelated to the image.",
-        Reappraise: "This is an example of reappraise, or thinking about the image in a way that gives it different meaning.",
-        Suppress: "Suppress involves pushing away emotional reactions.",
-        Accept: "This is an example of accept, or acknowledging your feelings without trying to change them."
-    }
-
-
-    /// all events for task 3 in chronological order
-    // 1. blank screen for 2000 ms
-    function blank() {
-        // initial blank screen / 2000 ms
-        $("#task-3-display").hide();
-        eventTimer.setTimeout(image1, 2000);
-    };
-
-    // 2. display image for 500 ms
-    function image1() {
-        // display image
-        $("#task-3-display").html("<img style='width: 100%' src=images/" + data.task3[trialCounter].image + ">")
-        $("#task-3-display").show();
-
-        // trigger choice display in 500 ms
-        eventTimer.setTimeout(choose, 500)
-
-    };
-
-    // 3. Choose coping strategy
-    function choose() {
-        // add display with coping choices
-        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
-            "<p class='task-3-choose'>Choose:</p>" +
-            "<p class='task-3-choose task-3-choices'>" + data.task3[trialCounter].choices[0] + "</p>" +
-            "<p class='task-3-choose'>or</p>" +
-            "<p class='task-3-choose task-3-choices'>" + data.task3[trialCounter].choices[1] + "</p>" +
-            "</div>"
-        );
-
-        // get timestamp of presentation
-        timer1 = window.performance.now();
-
-        // make choices clickable
-        $(".task-3-choices").click(function () {
-            var r = $(this).text()
-            //            console.log(r);
-            recordResponse("choices", r);
-        })
-    };
-
-    // (PRACTICE ONLY)
-    // 4. Choose example that best fits coping strategy
-    function practice_choose() {
-        // add display with coping choices
-        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
-            "<p class='task-3-examples-header'>Which of the following, is a good example of " + data.task3[trialCounter].choose_cope + "?</p>" +
-            "<ul style='list-style-type: none; padding: 0;'>" +
-            "<li id='0' class='task-3-examples '>" + data.task3[trialCounter].examples[0] + "</li>" +
-            "<li id='1' class='task-3-examples '>" + data.task3[trialCounter].examples[1] + "</li>" +
-            "<li id='2' class='task-3-examples '>" + data.task3[trialCounter].examples[2] + "</li>" +
-            "<li id='3' class='task-3-examples '>" + data.task3[trialCounter].examples[3] + "</li>" +
-            "</div>" +
-            "<div id='task-3-feedback' style='height: 150px'></div>"
-        );
-
-
-
-        // get timestamp of presentation
-        timer1 = window.performance.now();
-
-        // make choices clickable
-        $(".task-3-examples").click(function () {
-            var r = $(this).attr('id')
-            //            console.log(r);
-            recordResponse("practice", r);
-        })
-
-        // show display
-        $("#task-3-display").show();
-    };
-
-    // 5. instruction to prepare strategy
-    function prepare() {
-
-        $("#task-3-display").html("<div class='flexCenter flexColumn noSelect'>" +
-            "<p style='font-size: 40px'>Prepare to </p>" +
-            "<p style='font-size: 40px'>" + data.task3[trialCounter].choose_cope + "</p>"
-        );
-
-        $("#task-3-display").show();
-
-        // 2000 ms
-        eventTimer.setTimeout(image2, 2000)
-
-    };
-
-    
-    // 6. second image presentation for 5000 ms
-    function image2() {
-        // display image
-        $("#task-3-display").html("<img style='width: 100%' src=images/" + data.task3[trialCounter].image + ">")
-        $("#task-3-display").show();
-
-        // trigger choice display in 5000 ms
-        eventTimer.setTimeout(rate, 5000)
-    }
-
-    // 7. rate intensity of emotions and indicate how you coped
-    function rate() {
-
-        // insert rating and text questions
-        $("#task-3-display").html(
-            "<div class='flexCenter flexColumn'>" +
-            "<p style='font-size: 20px;'>Rate the intensity of your emotions</p>" +
-            "<div style='width: 100%' class='flexRow'>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='1'><p style='margin: 5px; text-align: center; font-size: 30px'>1</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='2'><p style='margin: 5px; text-align: center; font-size: 30px'>2</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='3'><p style='margin: 5px; text-align: center; font-size: 30px'>3</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='4'><p style='margin: 5px; text-align: center; font-size: 30px'>4</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='5'><p style='margin: 5px; text-align: center; font-size: 30px'>5</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='6'><p style='margin: 5px; text-align: center; font-size: 30px'>6</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='7'><p style='margin: 5px; text-align: center; font-size: 30px'>7</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='8'><p style='margin: 5px; text-align: center; font-size: 30px'>8</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='9'><p style='margin: 5px; text-align: center; font-size: 30px'>9</p></div>" +
-            "<div class='rate-container flexColumn'><input style='margin-left: 0' type='radio' name='task-3-rate' value='10'><p style='margin: 5px; text-align: center; font-size: 30px'>10</p></div>" +
-            "</div>" +
-            "<br>" +
-            "<p style='font-size: 20px'>How did you " + data.task3[trialCounter].choose_cope + "?</p>" +
-            "<textarea name='task-3-how' id='task-3-how' rows='3' style='width: 100%; font-size: 20px'></textarea>" +
-            "<div style='text-align: right'><button id='task-3-rating-submit' style='text-align: right;' class='button-green'>Submit</button></div>" +
-            "</div>"
-        );
-
-        // Submit button function for newly created button
-        $("#task-3-rating-submit").click(function () {
-            if (!(g.validateResponse(["task-3-rate", "task-3-how"]))) {
-                alert("You must give a repsonse before moving forward")
+        $("#task-3b-submit").click(function () {
+            if (!(g.validateResponse("task-3b-radio"))) {
+                alert("You must provide a response before moving forward.")
                 return
             }
-            // when submit button is clicked, collect responses and advance to the next trial
-            task3.nextTrial();
-        });
+
+            $("#task-3b").hide();
+
+            timer2 = window.performance.now();
+            var temp_response = g.getRadio("task-3b-radio");
+            g.clearRadio("task-3b-radio");
+
+            data.task3b[trialCounter].response = temp_response;
+            //            console.log(temp_response)
+            data.task3b[trialCounter].RT = timer2 - timer1
+            //            console.log(timer2 - timer1)
+
+            trialCounter++
+
+            if (trialCounter < data.task3b.length) {
+                eventTimer.setTimeout(task3b.start, 250)
+            } else {
+                eventTimer.setTimeout(function () {
+                    task4.create_inst();
+                }, 250)
+            }
+
+        })
 
 
-        // get timestamp for stimulus presentation
+    };
+
+    function start() {
+        $("#task-3b-prompt").html(data.task3b[trialCounter].prompt);
+
         timer1 = window.performance.now();
-
-        // show display
-        $("#task-3-display").show();
-    };
-
-    // record responses from the choice and example 
-    function recordResponse(type, response) {
-        // records clicked response and triggers next screen
-
-        timer2 = window.performance.now()
-        // if on the choice trial...
-        if (type == "choices") {
-            $("#task-3-display").hide();
-            $("#task-3-display").html("");
-
-            data.task3[trialCounter].choose_cope = response;
-            data.task3[trialCounter].choose_cope_RT = timer2 - timer1;
-
-            // if a practice trial trigger practice otherwise skip
-            if (data.task3[trialCounter].practice == true) {
-                eventTimer.setTimeout(practice_choose, 250)
-            } else {
-                eventTimer.setTimeout(prepare, 250)
-            }
-
-        }
-
-        if (type == "practice") {
-            var temp_response = data.task3[trialCounter].example_types[response]
-            data.task3[trialCounter].choose_example.push(temp_response);
-            data.task3[trialCounter].choose_example_RT.push(timer2 - timer1);
-
-            // determine accuracy
-            if (data.task3[trialCounter].example_types[response] == data.task3[trialCounter].choose_cope) {
-                // if correct display feedback and continue button
-                $("#task-3-feedback").html("<h3 style='width: 100%; text-align: center; margin: 0'>Correct: <em>" + feedbackTypes[temp_response] + "</em></h3>" +
-                    "<div style='text-align: right'><button id='task-3-continue' style='text-align: right; margin-bottom: 0' class='button-green'>continue</button></div>")
-
-
-                $("#task-3-continue").click(function () {
-                    $("#task-3-display").hide();
-                    $("#task-3-display").html("");
-                    eventTimer.setTimeout(prepare, 250)
-                });
-
-            } else {
-                data.task3[trialCounter].practice_errors++
-                    // if incorrect, display feedback and instructions to try again.
-                    $("#task-3-feedback").html("<h3 style='width: 100%; text-align: center; margin: 0'>Incorrect: <em>" + feedbackTypes[temp_response] + "</em> Please try again.</h3>")
-
-            }
-        }
-    };
-
-    // triggers next trial and record rating responses
-    function nextTrial() {
-        // hide display
-        $("#task-3-display").hide();
-
-        // get response timestamp
-        timer2 = window.performance.now();
-
-        // record rating and text response
-        data.task3[trialCounter].rating = $('[name="task-3-rate"]:checked').val() ? $('[name="task-3-rate"]:checked').val() : "no response";
-        data.task3[trialCounter].how = $('#task-3-how').val() ? $('#task-3-how').val() : "no response";
-        data.task3[trialCounter].rating_how_RT = timer2 - timer1
-
-        //advance trial counter
-        trialCounter++
-
-        // if practice trials are over, show new instructions
-        if (trialCounter == 20) {
-            $("#task-3").hide();
-            create_instB();
-
-            // if more trials left trigger next
-        } else if (trialCounter < data.task3.length) {
-            blank();
-            // if no more trials, trigger next instructions
-        } else {
-            $("#main-display").html("");
-            eventTimer.setTimeout(function () {
-                task4.create_inst();
-            }, 250)
-        }
-
+        $("#task-3b").show();
     }
 
     return {
         create_inst: create_inst,
-        create_instB: create_instB,
         create_exp: create_exp,
-        blank: blank,
-        image1: image1,
-        practice_chooose: practice_choose,
-        prepare: prepare,
-        image2: image2,
-        rate: rate,
-        recordResponse: recordResponse,
-        nextTrial: nextTrial
+        start: start
     }
-
-}()
+}();
 
 
 
@@ -1341,7 +1479,9 @@ var task5 = (function () {
  **/
 
 var end_Exp = function () {
-
+    
+    var data_sent = 0;
+    
     var markup_success = [
         '<div id="exp-complete-success" class="standard-display flexColumn" style="display: none; justify-content: space-between">',
            ' <div id="submit-success" style="width:100%" class="flexColumn">',
@@ -1426,6 +1566,8 @@ var end_Exp = function () {
         }
 
         if (data !== null && typeof data === 'object') {
+            data_sent = 1;
+            
             var newKey = firebase.database().ref().child(userID).push().key,
                 updates = {};
 
@@ -1462,6 +1604,7 @@ var end_Exp = function () {
     }
 
     return {
+        data_sent: data_sent,
         create_success: create_success,
         create_error: create_error,
         submitData: submitData
@@ -1469,3 +1612,5 @@ var end_Exp = function () {
     }
 
 }();
+
+

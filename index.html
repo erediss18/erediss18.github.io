@@ -14,7 +14,7 @@ link: nbrosowsky.github.io
 
     <!-- Stylesheets
 	============================================= -->
-    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="stylesheet" href="css/task.css" type="text/css" />
 
 
 
@@ -34,7 +34,7 @@ link: nbrosowsky.github.io
     <!-- Load screen -->
     <!-- If images have not loaded by task 2, the loading screen is displayed -->
     <div id="images-loading" class="standard-display absolute-center" style="display: none">
-        <div style="width:80%" class="flexColumn">
+        <div style="width:80%" class="flexColum">
             <p>Please wait while some images finish loading...</p>
             <p id="progress"></p>
         </div>
@@ -43,7 +43,13 @@ link: nbrosowsky.github.io
     <!-- Main Content
 		============================================= -->
     <div id="main-display" class="content-display absolute-center">
-
+        <div id="login-error"  class="standard-display absolute-center" style="display:none">
+            <div style="width:80%;">
+        <p>
+            I'm sorry, you were unable to log into the external database. Try refreshing the page. If the error persists, please contact the researcher.   
+        </p>
+            </div>
+        </div>
 
         <div id="landing" class="standard-display absolute-center" style="display: none">
             <div style="width:80%;">
@@ -58,9 +64,10 @@ link: nbrosowsky.github.io
                     <button id="landing_demographics" style="text-align: center" class="button-green">NEXT</button>
                 </div>
             </div>
-
-
         </div>
+        
+        
+        
         <!-- Demographics display -->
         <div id="demographics" class="standard-display absolute-center" style="display:none">
             <div style="width:80%;">
